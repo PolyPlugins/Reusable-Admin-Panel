@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Reusable Admin Panel
  * Description: A settings class to help developers easily add beautiful admin pages and handle getting, sanitizing, and saving options.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * Plugin URI: https://wordpress.org/plugins/reusable-admin-panel/
@@ -389,7 +389,7 @@ class Settings
         <!-- Fields -->
         <?php foreach($get_fields as $section => $fields) : ?>
           <div class="col-lg-10 col-md-12 options"<?php echo ($sections[0] != $section) ? ' style="display: none;"' : ''; ?> section="<?php echo esc_attr($section) ?>">
-            <h2><?php echo esc_html($section) . ' ' . $this->plugin_name . ' Settings'; ?></h2>
+            <h2><?php echo esc_html($section) . ' Settings'; ?></h2>
             <div class="fields">
               <?php foreach($fields as $field) : ?>
                 <?php $field['section'] = $section; ?>

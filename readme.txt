@@ -2,8 +2,8 @@
 Contributors: polyplugins
 Tags: admin, admin panel, reusable admin panel, plugin panel, developer, developer tool, extendable admin, extendable admin panel, beautiful admin, dev tool
 Requires at least: 4.0
-Tested up to: 6.2
-Stable tag: 1.0.4
+Tested up to: 6.3.2
+Stable tag: 1.0.5
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -68,6 +68,13 @@ This is purely for developers to help streamline their development process by ma
 3. Warning on deactivation
 
 == Changelog ==
+
+= 1.0.5 =
+
+* Updated: Removed plugin name from panel h2
+* Updated: Options panel to have a minimum height based on the height of tabs
+* Bugfix: Labels for input-group-text not resizing properly
+* Optimization: Restructured settings.js to be more readable
 
 = 1.0.4 =
 

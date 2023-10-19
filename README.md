@@ -60,6 +60,13 @@ This is purely for developers to help streamline their development process by ma
 
 # Changelog
 
+## 1.0.5
+
+* Updated: Removed plugin name from panel h2
+* Updated: Options panel to have a minimum height based on the height of tabs
+* Bugfix: Labels for input-group-text not resizing properly
+* Optimization: Restructured settings.js to be more readable
+
 ## 1.0.4
 
 * Updated: Label styling to be next to the field for a cleaner look
