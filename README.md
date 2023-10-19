@@ -52,12 +52,6 @@ Yes, we do have it listed on the [WordPress Repository](https://wordpress.org/pl
 This is purely for developers to help streamline their development process by making it easier to produce a settings page for their plugins.
 
 
-## Screenshots
-
-1. Plugin Panel
-2. Plugin Panel expanded with help sidebar
-3. Warning on deactivation
-
 # Changelog
 
 ## 1.0.5
