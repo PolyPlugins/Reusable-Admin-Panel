@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Reusable Admin Panel
  * Description: A settings class to help developers easily add beautiful admin pages and handle getting, sanitizing, and saving options.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * Plugin URI: https://wordpress.org/plugins/reusable-admin-panel/
@@ -337,7 +337,7 @@ class Settings
       <h2><?php echo esc_html($this->plugin_name . ' Settings'); ?></h2>
       <p></p>
 
-      <form method="post" action="options.php">
+      <form class="reusable-admin-panel-form" method="post" action="options.php">
         <?php
         settings_fields($this->plugin_slug_id . '_option_group');
         do_settings_sections($this->plugin_slug . '-admin');
@@ -466,6 +466,7 @@ class Settings
       'switch'          => 'sanitize_text_field',
       'button'          => 'sanitize_text_field',
       'text'            => 'sanitize_text_field',
+      'textarea'        => 'sanitize_text_field',
       'email'           => 'sanitize_email',
       'url'             => 'sanitize_url',
       'password'        => 'sanitize_text_field',
@@ -577,6 +578,34 @@ class Settings
   }
 
   /**
+   * A custom callback built to handle displaying of textarea fields
+   *
+   * @param  array $field
+   * @return void
+   */
+  public function callback_textarea($field) {
+    $settings = $this->settings;
+    $section  = $field['section'];
+    $name     = sanitize_title($field['name']);
+    $label    = $field['name'];
+    $id       = $section . '-' . $name;
+    $class    = $field['class'] ? sanitize_title($field['class']) : '';
+    $type     = $field['type'];
+    $default  = ($field['default']) ? $field['default'] : '';
+    $required = (isset($field['required']) && $field['required']) ? ' required' : '';
+    $value    = (!empty($settings[$section][$name]['value'])) ? $settings[$section][$name]['value'] : $default;
+    ?>
+    <div class="input-group">
+      <label class="input-group-text" for="<?php echo esc_attr($id); ?>"><?php echo esc_html($label); ?></label>
+      <textarea class="form-control <?php echo esc_attr($class); ?>" name="<?php echo esc_attr($this->settings_name) . '[' . esc_attr($section) . '][' . esc_attr($name) . '][' . esc_attr($type) . ']'; ?>" id="<?php echo esc_attr($id); ?>" placeholder="<?php echo esc_attr($label); ?>"<?php echo esc_attr($required); ?>><?php echo esc_html($value); ?></textarea>
+      
+      <!-- Display a info button which displays a toast when clicked -->
+      <?php $this->helper($field['help']); ?>
+    </div>
+    <?php
+  }
+
+  /**
    * A custom callback built to handle displaying of email fields
    *
    * @param  array $field
@@ -624,7 +653,7 @@ class Settings
     ?>
     <div class="input-group">
       <label class="input-group-text" for="<?php echo esc_attr($id); ?>"><?php echo esc_html($label); ?></label>
-      <input type="url" class="form-control <?php echo esc_attr($class); ?>" name="<?php echo esc_attr($this->settings_name) . '[' . esc_attr($section) . '][' . esc_attr($name) . '][' . esc_attr($type) . ']'; ?>" id="<?php echo esc_attr($id); ?>" placeholder="<?php echo esc_attr($label); ?>" value="<?php echo esc_attr($value); ?>"<?php echo esc_attr($required); ?>>
+      <input type="url" class="form-control <?php echo esc_attr($class); ?>" name="<?php echo esc_attr($this->settings_name) . '[' . esc_attr($section) . '][' . esc_attr($name) . '][' . esc_attr($type) . ']'; ?>" id="<?php echo esc_attr($id); ?>" placeholder="https://www.example.com" value="<?php echo esc_attr($value); ?>"<?php echo esc_attr($required); ?>>
       
       <!-- Display a info button which displays a toast when clicked -->
       <?php $this->helper($field['help']); ?>
@@ -704,13 +733,14 @@ class Settings
     $type     = $field['type'];
     $options  = $field['options'];
     $default  = ($field['default']) ? $field['default'] : '';
+    $disabled = ($field['disabled']) ? $field['disabled'] : '';
     $required = (isset($field['required']) && $field['required']) ? ' required' : '';
     $value    = (!empty($settings[$section][$name]['value'])) ? $settings[$section][$name]['value'] : $default;
     ?>
     <div class="input-group">
       <label class="input-group-text" for="<?php echo esc_attr($id); ?>"><?php echo esc_html($label); ?></label>
       <select class="form-select <?php echo esc_attr($class); ?>" name="<?php echo esc_attr($this->settings_name) . '[' . esc_attr($section) . '][' . esc_attr($name) . '][' . esc_attr($type) . ']'; ?>" id="<?php echo esc_attr($id); ?>" aria-label="<?php echo esc_attr($label); ?>"<?php echo esc_attr($required); ?>>
-        <option value="" disabled selected><?php echo esc_html($label); ?></option>
+        <option value="" disabled selected>Select Option</option>
         <?php foreach ($options as $option) : ?>
           <option value="<?php echo esc_attr($option); ?>" <?php echo ($option == $value) ? ' selected' : ''; ?>><?php echo esc_html($option); ?></option>
         <?php endforeach; ?>
@@ -849,6 +879,22 @@ class Settings
       
       <!-- Display a info button which displays a toast when clicked -->
       <?php $this->helper($field['help']); ?>
+    </div>
+    <?php
+  }
+  /**
+   * A custom callback built to handle error messages
+   *
+   * @param  array $field
+   * @return void
+   */
+  public function callback_error($field) {
+    $message = $field['message'] ? sanitize_text_field($field['message']) : '';
+    $color   = $field['color'] ? sanitize_text_field($field['color']) : '';
+    $class   = $field['class'] ? sanitize_title($field['class']) : '';
+    ?>
+    <div class="input-group">
+      <p class="<?php echo esc_attr($class); ?>" style="color: <?php echo esc_attr($color); ?>;"><?php echo esc_attr($message); ?></p>
     </div>
     <?php
   }

@@ -2,8 +2,8 @@
 Contributors: polyplugins
 Tags: admin, admin panel, reusable admin panel, plugin panel, developer, developer tool, extendable admin, extendable admin panel, beautiful admin, dev tool
 Requires at least: 4.0
-Tested up to: 6.3.2
-Stable tag: 1.0.5
+Tested up to: 6.4.2
+Stable tag: 1.0.6
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -17,6 +17,8 @@ A settings class to help developers easily add beautiful admin pages and handle 
 Our goal was to create a reuseable admin panel that can be used by various plugins without having to build or include classes of the same code in multiple plugins, while at the same time being quick to setup.
 
 Download the [example plugin](https://www.polyplugins.com/reusable-admin-panel-example-plugin/) to get up and running as quick as possible.
+
+Have suggestions? Submit a Pull Requests via [Github](https://github.com/PolyPlugins/Reusable-Admin-Panel).
 
 Features:
 
@@ -35,6 +37,7 @@ Fields:
 
 * Switch
 * Text
+* [NEW] Textarea
 * Email
 * URL
 * Password
@@ -43,8 +46,8 @@ Fields:
 * Date
 * Time
 * Color
-* [NEW] Dropdown Toggle - Additional fields can be added under a dropdown which show/hide based on selected option
-* [NEW] Button - Add multiple buttons that can link or be targeted in custom JS
+* Dropdown Toggle - Additional fields can be added under a dropdown which show/hide based on selected option
+* Button - Add multiple buttons that can link or be targeted in custom JS
 
 
 == Installation ==
@@ -68,6 +71,13 @@ This is purely for developers to help streamline their development process by ma
 3. Warning on deactivation
 
 == Changelog ==
+
+= 1.0.6 =
+
+* Added: Textarea input
+* Added: Callback to handle errors. Used when conditionally adding fields and needing an error to display.
+* Bugfix: URL to have example url as placeholder instead of label
+* Bugfix: Dropdowns to have Select Option as placeholder instead of the label
 
 = 1.0.5 =
 

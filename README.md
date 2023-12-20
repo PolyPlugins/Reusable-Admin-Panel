@@ -26,6 +26,7 @@ Yes, we do have it listed on the [WordPress Repository](https://wordpress.org/pl
 
 * Switch
 * Text
+* [NEW] Textarea
 * Email
 * URL
 * Password
@@ -34,8 +35,8 @@ Yes, we do have it listed on the [WordPress Repository](https://wordpress.org/pl
 * Date
 * Time
 * Color
-* [NEW] Dropdown Toggle - Additional fields can be added under a dropdown which show/hide based on selected option
-* [NEW] Button - Add multiple buttons that can link or be targeted in custom JS
+* Dropdown Toggle - Additional fields can be added under a dropdown which show/hide based on selected option
+* Button - Add multiple buttons that can link or be targeted in custom JS
 
 
 # Installation
@@ -53,6 +54,13 @@ This is purely for developers to help streamline their development process by ma
 
 
 # Changelog
+
+## 1.0.6
+
+* Added: Textarea input
+* Added: Callback to handle errors. Used when conditionally adding fields and needing an error to display.
+* Bugfix: URL to have example url as placeholder instead of label
+* Bugfix: Dropdowns to have Select Option as placeholder instead of the label
 
 ## 1.0.5
 
